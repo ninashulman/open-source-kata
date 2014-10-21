@@ -26,19 +26,23 @@
 #   no more bottles
 #   etc.
 
+def bottle_string(num)
+  if (num > 1)
+    str = "#{num} bottles"
+  elsif (num == 1)
+    str = "1 bottle"
+  else (num == 0)
+    str = "no more bottles"
+  end
+  
+  return str
+end  
+
 def bottles(start_number)
   $stdout.sync = true
   start_number.downto(1) do |i|
-    if i > 2
-      print "#{i} bottles of beer on the wall, #{i} bottles of beer.\n"
-      print "Take one down, pass it around, #{i-1} bottles of beer on the wall!\n"
-    elsif i == 2
-      print "#{i} bottles of beer on the wall, #{i} bottles of beer.\n"
-      print "Take one down, pass it around, #{i-1} bottle of beer on the wall!\n"
-    else
-      print "#{i} bottle of beer on the wall, #{i} bottle of beer.\n"
-      print "Take one down, pass it around, no more bottles of beer on the wall!\n"
-    end
+      print "#{bottle_string(i)} of beer on the wall, #{bottle_string(i)} of beer.\n"
+      print "Take one down, pass it around, #{bottle_string(i-1)} of beer on the wall!\n"
   end
 end
 
