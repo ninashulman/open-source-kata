@@ -27,11 +27,11 @@ def hot_or_cold(num_to_guess)
     guess = get_user_guess()   # "guess" is now an integer
 
     if guess < num_to_guess    # The guess is too cold
-      ____
+      p 'The guess is too cold'
     elsif guess > num_to_guess # The guess is too hot
-      ____
+      p 'The guess is too hot'
     else                       # The guess is juuuust right
-      ____
+      p 'The guess is juuuust right'
 
       # This "return" will make the program return from hot_or_cold, even from
       # inside the while loop.
