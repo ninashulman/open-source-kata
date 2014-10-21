@@ -21,6 +21,11 @@
 
 def sum(list)
   # This is your job. :)
+  total = 0
+  list.each do |item|
+    total += item
+  end
+  return total
 end
 
 if __FILE__ == $0

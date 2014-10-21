@@ -13,9 +13,17 @@
 
 def longest_string(list)
   # This is your job. :)
+  saved = list.first
+  list.each do |item|
+    if item.length > saved.length
+      saved = item
+    end
+  end
+  return saved
 end
 
 if __FILE__ == $0
   # I'd advise putting some sanity checks here.
+  p longest_string(['Nina', 'school', 'outmost']) == 'outmost'
   # How else will you be sure your code does what you think it does?
 end

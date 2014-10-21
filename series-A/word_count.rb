@@ -11,6 +11,8 @@
 def word_count(string)
   # Hint: You'll want to use String#split
   # See: http://www.ruby-doc.org/core-2.1.2/String.html#method-i-split
+  str = string.split(' ')
+  return str.length
 end
 
 if __FILE__ == $0

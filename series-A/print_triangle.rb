@@ -23,6 +23,9 @@ end
 
 def print_triangle(height)
   # You have to fill in the details here.
+  (1..height).each do |i|
+    print_line(i)
+  end
 end
 
 # There are no rumble strips this time.  It's up to you to decide whether

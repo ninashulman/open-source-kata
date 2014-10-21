@@ -23,9 +23,27 @@ def print_pyramid(height)
   # This is your job. :)
   # Suggestion: you can call print_triangle to print out the first, "upward" half of the pyramid
   # You'll have to write code to print out the second, "downward" half of the pyramid.
+  print_triangle(height)
+  while height > 1 do
+    height -=1
+    print_line(height)
+  end
 end
 
 if __FILE__ == $0
   # I'd advise putting some sanity checks here.
   # How else will you be sure your code does what you think it does?
+  print_pyramid(1)
+
+  print "\n\n\n" # This is here just to make the separation between triangles clearer
+
+  print_pyramid(2)
+
+  print "\n\n\n" # This is here just to make the separation between triangles clearer
+
+  print_pyramid(3)
+
+  print "\n\n\n" # This is here just to make the separation between triangles clearer
+
+  print_pyramid(10)
 end

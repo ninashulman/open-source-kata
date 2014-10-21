@@ -21,9 +21,13 @@ def count_max(list)
   # trying. The "requite_relative" statements above make them available to us, here.
   #
   # But remember: inelegant, working code is better than elegant, unfinished code.
+  max_num = max(list)
+  count = count_in_list(list, max_num)
+  return count
 end
 
 if __FILE__ == $0
   # I'd advise putting some sanity checks here.
   # How else will you be sure your code does what you think it does?
+  p count_max([10, 1,2,10,10]) == 3
 end
