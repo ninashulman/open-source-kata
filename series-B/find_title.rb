@@ -26,19 +26,20 @@ def copy_title(contents, i)
 end
 
 def find_title(url)
-  # Solution #1 (working)
+  # Solution #1 (using Nokogiri)
   # return Nokogiri::HTML(open(url)).title
-  
-  # Solution #2 (working)
+
+  # Solution #2 (require 'open-uri' and using string traversal and slicing)
+=begin
   # In three "easy" steps:
   #   1. Use "open" to download the contents of URL
   
   contents = open(url).read  #contents is a String
-  # p contents.slice(/<title*<\/title>/) #need find correct regex
+  
   
   #   2. Use one of the methods described below to extract the
   #      contents of the title tag 
-
+  
   # Find the begining and the end of the string within <title>...</title>
   i = contents.index("<title")
   k = contents.index("</title>")
@@ -51,9 +52,18 @@ def find_title(url)
       i += 1
     end
   end
-
+  
   #   3. Return the contents of the title tag.
-  contents.slice(i+1..k-1)
+  title = contents.slice(i+1..k-1)
+=end
+
+  # Solution #3 (require 'open-uri' and using regex)
+  contents = open(url).read  #contents is a String
+  title_with_tags = contents.slice(/<title\b[^>]*>(.*?)<\/title>/)
+  title_with_brackets = title_with_tags.slice(/[>]*>(.*?)</) #Ex: ">Google<" or ">Welcome to Facebook - Log In, Sign Up or Learn More<"
+  title = title_with_brackets.slice(/\b[^<>]*/)
+  
+  title
 end
 
 if __FILE__ == $0
