@@ -25,8 +25,22 @@ require 'nokogiri'
 
 def find_links(url)
   # This should return an array of all links at the given URL
+  # Can be done using Nokogiri's css OR xpath methods
+  #links = page.xpath('//a[@href]').map
+  #links = page.xpath('//@href').map(&:value)
+  links = []
+  doc = Nokogiri::HTML(open(url))
+  doc.css('a').each do |a_tag| #doc.css('a') is Nokogiri::XML::NodeSet
+    href_str = String(a_tag['href']) # converting to String in case if it is NilClass type
+    if href_str.include? "http"
+      links.push(a_tag['href'])
+    end  
+  end
+  links
 end
+
 
 find_links("http://www.cnn.com/").each do |url|
   puts url
+  puts "================="
 end

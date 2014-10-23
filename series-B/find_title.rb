@@ -4,6 +4,7 @@
 # Prints:      Nothing
 
 require 'open-uri'
+require 'nokogiri'
 
 # Note #1
 # open-uri allows us to download the contents of any URL using the "open" method
@@ -14,13 +15,45 @@ require 'open-uri'
 # https://www.google.com. open-uri comes with Ruby, so you DO NOT need to
 # install anything extra.
 
+def copy_title(contents, i)
+  p contents[i-6]
+  p contents[i-5]
+  p contents[i-4]
+  p contents[i-3]
+  p contents[i-2]
+  p contents[i-1]
+  p contents[i]
+end
 
 def find_title(url)
+  # Solution #1 (working)
+  # return Nokogiri::HTML(open(url)).title
+  
+  # Solution #2 (working)
   # In three "easy" steps:
   #   1. Use "open" to download the contents of URL
+  
+  contents = open(url).read  #contents is a String
+  # p contents.slice(/<title*<\/title>/) #need find correct regex
+  
   #   2. Use one of the methods described below to extract the
-  #      contents of the title tag.
+  #      contents of the title tag 
+
+  # Find the begining and the end of the string within <title>...</title>
+  i = contents.index("<title")
+  k = contents.index("</title>")
+
+  contents.slice(i..k).each_char do |char|
+    # find the index of the closing '>' in <title>
+    if char == '>'
+      break
+    else
+      i += 1
+    end
+  end
+
   #   3. Return the contents of the title tag.
+  contents.slice(i+1..k-1)
 end
 
 if __FILE__ == $0

@@ -28,6 +28,20 @@
 # inputs.  Don't worry if it can't.
 
 def fib(n)
+    if n == 0
+      result = 0
+    elsif n == 1
+      result = 1
+    else
+      f0 = 0
+      f1 = 1
+      (2..n).each do |i|
+        result = f0 + f1
+        f0 = f1
+        f1 = result
+      end
+    end
+    result
 end
 
 if __FILE__ == $0
@@ -52,7 +66,7 @@ if __FILE__ == $0
   # Want to see if your fibonacci method can handle big inputs?
   # Uncomment this:
   #
-  # puts "The 1,000,000th Fibonacci number is #{fib(1000000)}"
+  puts "The 1,000,000th Fibonacci number is #{fib(1000000)}"
   #
   # !!!WARNING!!!
   # This might grind your computer to a halt. If that happens, press CTRL+c.

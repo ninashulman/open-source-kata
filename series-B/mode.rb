@@ -16,12 +16,19 @@
 # Break it down as clearly as you can in your own head first.
 
 def mode(array)
+  my_hash = Hash.new(0)
+  array.each  { |k| my_hash[k] += 1 }
+  max_pair = my_hash.max_by{|k,v| v}
+  max_pair[0]
 end
 
 if __FILE__ == $0
   # Write some of your own "sanity checks" here.  Each check should look like:
   #
-  #  p mode([...data points...]) == ...expected return value...
+  p mode([1, 1, 1, 5, 7]) == 1
+  
+  long_array = ['a']*100
+  p mode(long_array) == 'a'
   #
   # A good sanity check is like a canary in a coal mine: when it fails we know
   # something is very wrong in our code.  This means sanity checks should
